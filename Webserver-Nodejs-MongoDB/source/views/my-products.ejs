@@ -1,0 +1,33 @@
+<!-- views/my-products.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Products</title>
+</head>
+<body>
+  <h1>My Products</h1>
+  <% if (products.length > 0) { %>
+    <ul>
+      <% products.forEach((product) => { %>
+        <li>
+          <h3><%= product.name %></h3>
+          <p>Price: <%= product.price %></p>
+          <% if (product.imageUrl) { %>
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+          <% } else { %>
+            <p>No image available</p>
+          <% } %>
+          <!-- Add a delete button for each product -->
+          <form method="post" action="/delete-product/<%= product._id %>?_method=DELETE">
+            <button type="submit">Delete</button>
+          </form>
+          <hr>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No products available.</p>
+  <% } %>
+</body>
+</html>

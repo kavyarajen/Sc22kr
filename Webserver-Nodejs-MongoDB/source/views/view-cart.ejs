@@ -1,0 +1,29 @@
+<!-- views/view-cart.ejs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Cart</title>
+</head>
+<body>
+  <h1>Cart</h1>
+  <% if (cart && cart.products.length > 0) { %>
+    <ul>
+      <% cart.products.forEach((product) => { %>
+        <li>
+          <h3><%= product.name %></h3>
+          <p>Price: <%= product.price %></p>
+          <% if (product.imageUrl) { %>
+            <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+          <% } else { %>
+            <p>No image available</p>
+          <% } %>
+          <hr>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No items in the cart.</p>
+  <% } %>
+</body>
+</html>

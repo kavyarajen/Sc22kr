@@ -1,0 +1,185 @@
+<!-- views/products.ejs -->
+<!-- views/product.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+<style>
+  /* styles.css */
+
+/* styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding-top: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-open {
+  transform: translateX(0);
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-toggle {
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.navbar-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+
+.navbar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-menu li {
+  padding: 10px;
+}
+
+.navbar-menu li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Add this to align product cards */
+}
+
+.product-card {
+  flex-basis: calc(33.33% - 30px); /* Adjust card width */
+  margin: 10px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 5px;
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.product-card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+</style> 
+
+</head>
+<body>
+
+<!-- Side Navbar -->
+<nav class="static-nav">
+  <div class="navbar-header">
+    <span class="navbar-brand">E-Commerce</span>
+  </div>
+  <ul class="navbar-menu">
+    <li><a href="/view-cart">View Cart</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+<!-- Main Content -->
+<main class="main-content">
+  <!-- Product Cards -->
+  <% if (products.length > 0) { %>
+      <% products.forEach((product) => { %>
+  <div class="product-card">
+    <% if (product.imageUrl) { %>
+    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+    <% } else { %>
+      <p>No image available</p>
+    <% } %>
+    <h2><%= product.name %></h2>
+    <p>Price: <%= product.price %></p>
+    <form method="post" action="/add-to-cart/<%= product._id %>">
+      <button type="submit">Add to Cart</button>
+    </form>
+
+  </div>
+  <% }); %>
+ <% } else { %>
+  <p>No products available.</p>
+<% } %>
+
+  <!-- <div class="product-card">
+    <img src="/images/product2.jpg" alt="Product 2">
+    <h2>Product 2</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <button>Add to Cart</button>
+  </div> -->
+
+  <!-- Add more product cards here -->
+
+</main>
+
+<script>
+  // JavaScript to handle the side navbar toggle
+  document.getElementById("nav-toggle").addEventListener("click", function () {
+    document.querySelector(".side-nav").classList.toggle("nav-open");
+  });
+</script>
+
+</body>
+</html>
+

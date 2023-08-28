@@ -1,0 +1,22 @@
+<!-- views/create-user.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create User</title>
+</head>
+<body>
+  <h1>Create User</h1>
+  <form method="post" action="/create-user">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="isAdmin">Admin User:</label>
+    <input type="checkbox" id="isAdmin" name="isAdmin">
+    <br>
+    <button type="submit">Create User</button>
+  </form>
+</body>
+</html>
